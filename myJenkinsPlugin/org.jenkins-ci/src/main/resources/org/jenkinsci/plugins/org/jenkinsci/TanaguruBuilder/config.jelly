@@ -1,0 +1,90 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!--
+    This jelly script is used for per-project configuration.
+
+      See global.jelly for a general discussion about jelly script.
+    -->
+
+    <!--
+      Creates a text field that shows the value of the "name" property.
+      When submitted, it will be passed to the corresponding constructor parameter.
+    -->
+    <f:entry title="Name" field="name">
+        <f:textbox />
+    </f:entry>
+      <f:entry title="Url to audit" field="urlToAudit">
+        <f:textbox />
+    </f:entry>
+  
+    <f:entry title="${%scenario}" field="scenario">
+        <f:textarea />
+    </f:entry>
+    
+      <f:entry title="${%app.rest.uri.title}" field="urlTanaguruWebService"  description="${%app.rest.uri.description}">
+        <f:textbox />
+    </f:entry>
+  
+    <f:validateButton
+        title="${%rest.connection.test.title}" progress="${%rest.connection.test.progress}"
+        method="testTanaguruRestConnection" with="urlTanaguruWebService"/>
+  
+  
+  
+  
+    <f:section title="Advanced Tanguru Plugin Integration Options">
+        <f:advanced>
+
+            <f:entry field="thresholdMetric" title="${%appdynamics.threshold.metric.title}"
+                     description="${%appdynamics.threshold.metric.description}">
+                <f:select/>
+            </f:entry>
+            <f:entry title="${%appdynamics.threshold.lower.title}">
+                <f:checkbox field="lowerIsBetter" default="true"/>
+            </f:entry>
+
+            <f:entry title="${%appdynamics.minmeasuretime.title}" description="${%appdynamics.minmeasuretime.description}">
+                <f:number field="minimumMeasureTimeInMinutes" default="${descriptor.defaultMinimumMeasureTimeInMinutes}"
+                          min="10" max="1440"/>
+            </f:entry>
+
+            <f:entry title="${%app.mark.title}" description="${%app.mark.description}">
+                <table width="250px">
+                    <thead>
+                        <tr>
+                            <td/>
+                            <td colspan="2">
+                                <img src="${rootURL}/images/16x16/yellow.gif" alt="100%"/>
+                                ${%Unstable}
+                            </td>
+                            <td colspan="2">
+                                <img src="${rootURL}/images/16x16/red.gif" alt="100%"/>
+                                ${%Failed}
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="vertical-align:middle">${%Mark}:</td>
+                            <td>
+                                <f:number field="performanceUnstableMark" default="${descriptor.defaultUnstableMark}" min="0"
+                                          max="100"/>
+                            </td>
+                            <td>%</td>
+                            <td>
+                                <f:number field="performanceFailedMark" default="${descriptor.defaultFailedMark}" min="0"
+                                          max="100"/>
+                            </td>
+                            <td>%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </f:entry>
+
+        </f:advanced>
+    </f:section>
+  
+</j:jelly>
+
+
+

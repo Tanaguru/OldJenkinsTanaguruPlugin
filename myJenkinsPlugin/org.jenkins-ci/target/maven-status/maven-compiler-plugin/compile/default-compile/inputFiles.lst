@@ -1,0 +1,7 @@
+/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/src/main/java/org/tanaguru/model/AuditModel.java
+/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/src/main/java/org/jenkinsci/plugins/org/jenkinsci/TanaguruBuilder.java
+/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/src/main/java/org/tanaguru/jenkins/rest/TanaguruRestConnection.java
+/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/src/main/java/org/tanaguru/jenkins/rest/types/MetricData.java
+/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/src/main/java/org/tanaguru/jenkins/rest/MyJerseyClient.java
+/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/src/main/java/org/tanaguru/jenkins/rest/types/MetricValues.java
+/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/src/main/java/org/tanaguru/jenkins/rest/AuditRestServiceImpl_JerseyClient.java

@@ -1,0 +1,76 @@
+Feb 24, 2017 4:04:55 PM org.eclipse.jetty.util.log.Log initialized
+INFO: Logging initialized @1178ms
+Feb 24, 2017 4:04:55 PM org.jvnet.hudson.test.HudsonTestCase <clinit>
+WARNING: Failed to cancel out MAVEN_OPTS
+hudson.os.PosixException: native error calling unsetenv: Invalid argument MAVEN_OPTS EIO
+	at hudson.os.PosixAPI$1.error(PosixAPI.java:35)
+	at jnr.posix.JavaPOSIX.unsetenv(JavaPOSIX.java:341)
+	at jnr.posix.LazyPOSIX.unsetenv(LazyPOSIX.java:311)
+	at org.jvnet.hudson.test.HudsonTestCase.<clinit>(HudsonTestCase.java:1881)
+	at org.jvnet.hudson.test.JellyTestSuiteBuilder$JellyTestSuite.<init>(JellyTestSuiteBuilder.java:139)
+	at org.jvnet.hudson.test.JellyTestSuiteBuilder$JellyTestSuite.<init>(JellyTestSuiteBuilder.java:138)
+	at org.jvnet.hudson.test.JellyTestSuiteBuilder.build(JellyTestSuiteBuilder.java:80)
+	at org.jvnet.hudson.test.PluginAutomaticTestBuilder.build(PluginAutomaticTestBuilder.java:59)
+	at InjectedTest.suite(InjectedTest.java:15)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.internal.runners.SuiteMethod.testFromSuiteMethod(SuiteMethod.java:35)
+	at org.junit.internal.runners.SuiteMethod.<init>(SuiteMethod.java:24)
+	at org.junit.internal.builders.SuiteMethodBuilder.runnerForClass(SuiteMethodBuilder.java:11)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:26)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.requests.ClassRequest.getRunner(ClassRequest.java:33)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:364)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+
+Exploding /home/tanaguru/.m2/repository/org/jenkins-ci/main/jenkins-war/1.625.3/jenkins-war-1.625.3-war-for-test.jar into /home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/target/jenkins-for-test
+Feb 24, 2017 4:04:58 PM org.eclipse.jetty.server.handler.ContextHandler setContextPath
+WARNING: Empty contextPath
+Feb 24, 2017 4:04:58 PM org.eclipse.jetty.server.Server doStart
+INFO: jetty-9.2.12.v20150709
+Feb 24, 2017 4:04:58 PM org.eclipse.jetty.webapp.StandardDescriptorProcessor visitServlet
+INFO: NO JSP Support for /, did not find org.eclipse.jetty.jsp.JettyJspServlet
+Feb 24, 2017 4:04:58 PM org.eclipse.jetty.server.handler.ContextHandler doStart
+INFO: Started o.e.j.w.WebAppContext@63798ca7{/,file:/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/target/jenkins-for-test/,AVAILABLE}{/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/target/jenkins-for-test}
+Feb 24, 2017 4:04:58 PM org.eclipse.jetty.server.AbstractConnector doStart
+INFO: Started ServerConnector@2da59753{HTTP/1.1}{localhost:45668}
+Feb 24, 2017 4:04:58 PM org.eclipse.jetty.server.Server doStart
+INFO: Started @4766ms
+Feb 24, 2017 4:04:59 PM jenkins.InitReactorRunner$1 onAttained
+INFO: Started initialization
+Feb 24, 2017 4:05:10 PM jenkins.InitReactorRunner$1 onAttained
+INFO: Listed all plugins
+Feb 24, 2017 4:05:10 PM jenkins.InitReactorRunner$1 onAttained
+INFO: Prepared all plugins
+Feb 24, 2017 4:05:11 PM jenkins.InitReactorRunner$1 onAttained
+INFO: Started all plugins
+Feb 24, 2017 4:05:16 PM jenkins.InitReactorRunner$1 onAttained
+INFO: Augmented all extensions
+Feb 24, 2017 4:05:18 PM jenkins.InitReactorRunner$1 onAttained
+INFO: Loaded all jobs
+Feb 24, 2017 4:05:19 PM org.jenkinsci.main.modules.sshd.SSHD start
+INFO: Started SSHD at port 32951
+Feb 24, 2017 4:05:19 PM jenkins.InitReactorRunner$1 onAttained
+INFO: Completed initialization
+Feb 24, 2017 4:05:19 PM org.eclipse.jetty.server.Server doStart
+INFO: jetty-9.2.12.v20150709
+Feb 24, 2017 4:05:19 PM org.eclipse.jetty.server.handler.ContextHandler doStart
+INFO: Started o.e.j.s.ServletContextHandler@2488b073{/,null,AVAILABLE}
+Feb 24, 2017 4:05:19 PM org.eclipse.jetty.server.AbstractConnector doStart
+INFO: Started ServerConnector@7db82169{HTTP/1.1}{0.0.0.0:38985}
+Feb 24, 2017 4:05:19 PM org.eclipse.jetty.server.Server doStart
+INFO: Started @25844ms
+Feb 24, 2017 4:05:24 PM org.eclipse.jetty.server.AbstractConnector doStop
+INFO: Stopped ServerConnector@2da59753{HTTP/1.1}{localhost:0}
+Feb 24, 2017 4:05:24 PM org.eclipse.jetty.server.handler.ContextHandler doStop
+INFO: Stopped o.e.j.w.WebAppContext@63798ca7{/,file:/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/target/jenkins-for-test/,UNAVAILABLE}{/home/tanaguru/sources/repotTngJenkinPlugin/JenkinsTanaguruPlugin/myJenkinsPlugin/org.jenkins-ci/target/jenkins-for-test}
+WARN: The method class org.apache.commons.logging.impl.SLF4JLogFactory#release() was invoked.
+WARN: Please see http://www.slf4j.org/codes.html#release for an explanation.

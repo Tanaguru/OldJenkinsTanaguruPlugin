@@ -1,0 +1,4 @@
+org.jenkinsci.plugins.org.jenkinsci
+org.tanaguru.jenkins.rest
+org.tanaguru.jenkins.rest.types
+org.tanaguru.model

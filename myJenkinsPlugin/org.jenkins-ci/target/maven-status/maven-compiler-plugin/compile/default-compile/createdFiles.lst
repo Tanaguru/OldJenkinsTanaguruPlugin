@@ -1,0 +1,15 @@
+org/tanaguru/jenkins/rest/MyJerseyClient$3.class
+org/jenkinsci/plugins/org/jenkinsci/TanaguruBuilder/DescriptorImpl/doCheckName.stapler
+org/tanaguru/model/AuditModel.class
+org/tanaguru/jenkins/rest/types/MetricData.class
+org/tanaguru/jenkins/rest/MyJerseyClient$2.class
+org/tanaguru/jenkins/rest/MyJerseyClient.class
+org/jenkinsci/plugins/org/jenkinsci/TanaguruBuilder$DescriptorImpl.class
+org/tanaguru/jenkins/rest/MyJerseyClient$1.class
+org/jenkinsci/plugins/org/jenkinsci/TanaguruBuilder.stapler
+org/jenkinsci/plugins/org/jenkinsci/TanaguruBuilder/DescriptorImpl/doTestTanaguruRestConnection.stapler
+org/jenkinsci/plugins/org/jenkinsci/TanaguruBuilder.class
+org/tanaguru/jenkins/rest/types/MetricValues.class
+org/jenkinsci/plugins/org/jenkinsci/TanaguruBuilder/DescriptorImpl/doCheckUrlTanaguruWebService.stapler
+org/tanaguru/jenkins/rest/AuditRestServiceImpl_JerseyClient.class
+META-INF/annotations/hudson.Extension
