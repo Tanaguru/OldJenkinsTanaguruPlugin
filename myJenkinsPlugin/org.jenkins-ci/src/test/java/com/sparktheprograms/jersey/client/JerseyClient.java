@@ -37,10 +37,6 @@ public class JerseyClient {
               
               if(response.getStatus() == 200) {
                   
-                  
-                  
-                  
-                  
                      String message = response.readEntity(new GenericType<String>() {});
                      System.out.println(message);
                      System.out.println("Execution avec succès !!!!");

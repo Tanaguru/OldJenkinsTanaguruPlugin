@@ -5,6 +5,7 @@ import hudson.Extension;
 import hudson.FilePath;
 import hudson.util.FormValidation;
 import hudson.model.AbstractProject;
+import hudson.model.Result;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.tasks.Builder;
@@ -17,7 +18,6 @@ import org.kohsuke.stapler.QueryParameter;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import org.tanaguru.jenkins.rest.AuditRestServiceImpl_JerseyClient;
 import org.tanaguru.jenkins.rest.MyJerseyClient;
 
 /**
@@ -38,17 +38,19 @@ import org.tanaguru.jenkins.rest.MyJerseyClient;
 public class TanaguruBuilder extends Builder implements SimpleBuildStep {
 
     private final String name;
+    private final String urlToAudit;
     private final String urlTanaguruWebService;
     private final int performanceUnstableMark;
     private final int performanceFailedMark;
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
-    public TanaguruBuilder(String name, String urlTanaguruWebService, int performanceUnstableMark, int performanceFailedMark) {
+    public TanaguruBuilder(String name, String urlToAudit, String urlTanaguruWebService, int performanceUnstableMark, int performanceFailedMark) {
         this.name = name;
         this.urlTanaguruWebService = urlTanaguruWebService;
-        this.performanceUnstableMark= performanceUnstableMark;
-        this.performanceFailedMark= performanceFailedMark;
+        this.performanceUnstableMark = performanceUnstableMark;
+        this.performanceFailedMark = performanceFailedMark;
+        this.urlToAudit = urlToAudit;
     }
 
     /**
@@ -72,12 +74,10 @@ public class TanaguruBuilder extends Builder implements SimpleBuildStep {
     public int getPerformanceFailedMark() {
         return performanceFailedMark;
     }
-    
-    
-    
-    
-    
-    
+
+    public String getUrlToAudit() {
+        return urlToAudit;
+    }
 
     @Override
     public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener) {
@@ -92,14 +92,47 @@ public class TanaguruBuilder extends Builder implements SimpleBuildStep {
         }
 
         listener.getLogger().println("Running Tanaguru Rest API call .....");
-        
+
         MyJerseyClient myJerseyClient = new MyJerseyClient(urlTanaguruWebService);
 
-        listener.getLogger().println("Result of Tanaguru Rest API call :"+ myJerseyClient.getTestConnection());
-        
-        
-        
-        
+        listener.getLogger().println("Test of Tanaguru Rest API call :" + myJerseyClient.getTestConnection());
+
+        Double mark = 0.0;
+        int passed = 0;
+        int failed = 0;
+        int preQualified = 0;
+        int notApplicable = 0;
+        int notTested = 0;
+
+        if (urlToAudit != null) {
+
+            String str = myJerseyClient.postRequestUsingGson(urlToAudit);
+
+            if (str != null) {
+
+                String[] tnz = str.split("#");
+
+                mark = Double.valueOf(tnz[0]);
+                listener.getLogger().println("Audit mark is: " + mark + "%");
+
+                listener.getLogger().println("Number of passed : " + tnz[1] + " test(s)");
+                listener.getLogger().println("Number of failed : " + tnz[2] + " test(s)");
+                listener.getLogger().println("Number of pre-qualified : " + tnz[3] + " test(s)");
+                listener.getLogger().println("Number of not applicable : " + tnz[4] + " test(s)");
+                //    listener.getLogger().println("Number of not tested test(s) : " + tnz[5] + "%");
+
+            }
+
+        }
+
+        if (mark <= performanceFailedMark) {
+            build.setResult(Result.FAILURE);
+        } else if (mark <= performanceUnstableMark) {
+            build.setResult(Result.UNSTABLE);
+        } else {
+            build.setResult(Result.SUCCESS);
+        }
+
     }
 
     // Overridden for better type safety.

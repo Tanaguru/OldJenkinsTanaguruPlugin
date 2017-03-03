@@ -21,6 +21,12 @@ public class AuditModel implements Serializable{
     private String type;
     private String state;
     private String scenario;
+    private double mark;
+    private int passed;
+    private int failed;
+    private int preQualified;
+    private int notApplicable;
+    private int notTested;
     
 
     
@@ -94,10 +100,54 @@ public class AuditModel implements Serializable{
     public void setScenario(String scenario) {
         this.scenario = scenario;
     }
-    
-    
 
-   
+    public double getMark() {
+        return mark;
+    }
+
+    public void setMark(double mark) {
+        this.mark = mark;
+    }
+
+    public int getPassed() {
+        return passed;
+    }
+
+    public void setPassed(int passed) {
+        this.passed = passed;
+    }
+
+    public int getFailed() {
+        return failed;
+    }
+
+    public void setFailed(int failed) {
+        this.failed = failed;
+    }
+
+    public int getPreQualified() {
+        return preQualified;
+    }
+
+    public void setPreQualified(int preQualified) {
+        this.preQualified = preQualified;
+    }
+
+    public int getNotApplicable() {
+        return notApplicable;
+    }
+
+    public void setNotApplicable(int notApplicable) {
+        this.notApplicable = notApplicable;
+    }
+
+    public int getNotTested() {
+        return notTested;
+    }
+
+    public void setNotTested(int notTested) {
+        this.notTested = notTested;
+    }
 
 }
 

@@ -9,8 +9,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
+import org.glassfish.jersey.client.ClientProperties;
 import org.tanaguru.model.AuditModel;
 
+/**
+ *
+ * @author tanaguru
+ */
 
 public class MyJerseyClient {
 
@@ -21,6 +26,8 @@ public class MyJerseyClient {
     public MyJerseyClient(String baseUri) {
         this.baseUri = baseUri;
         client = ClientBuilder.newClient();
+//        client.property(ClientProperties.CONNECT_TIMEOUT, 1000);
+//        client.property(ClientProperties.READ_TIMEOUT, 1000);
         target = client.target(baseUri);
     }
 
@@ -65,13 +72,13 @@ public class MyJerseyClient {
         }
     }
 
-    public void postRequestUsingGson() {
+    public String postRequestUsingGson(String urlToAudit) {
         reloadUri(baseUri);
         target = target.path("/postMessage");
         Gson gson = new Gson();
         AuditModel auditModel = new AuditModel();
-        auditModel.setId(19);
-        auditModel.setIdCode("ZF1919");
+        auditModel.setUrl(urlToAudit);
+        //   auditModel.setIdCode("ZF1919");
         String input = gson.toJson(auditModel);
 
         //POST Request from jersey Client Using GSON
@@ -85,7 +92,9 @@ public class MyJerseyClient {
             });
             System.out.println(message);
             System.out.println("post request using Json is Success");
+            return message;
         }
+        return null;
     }
 
     public void putRequest() {
@@ -108,7 +117,7 @@ public class MyJerseyClient {
             MyJerseyClient jerseyClient = new MyJerseyClient("http://localhost:8080/rest/service");
             jerseyClient.getTestConnection();
             //  jerseyClient.postRequest();
-            jerseyClient.postRequestUsingGson();
+            jerseyClient.postRequestUsingGson("http://longdesc.fr/");
 //                     jerseyClient.putRequest();
         } catch (Exception e) {
             System.out.println(e);
