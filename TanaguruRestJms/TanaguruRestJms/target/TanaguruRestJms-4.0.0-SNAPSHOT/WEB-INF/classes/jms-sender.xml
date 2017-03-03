@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+ 
+  <context:component-scan base-package="org.tanaguru.jsm.service.senderimpl, org.tanaguru.jms.service.listenerimpl" />
+ 
+ 
+  <!-- =============================================== -->
+  <!-- JMS Common, Define JMS connectionFactory        -->
+  <!-- =============================================== -->
+  <!-- Activemq connection factory -->
+  <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+    <!-- brokerURL, You may have different IP or port -->
+    <constructor-arg index="0" value="tcp://localhost:61616" />
+  </bean>
+ 
+  <!-- Pooled Spring connection factory -->
+  <bean id="connectionFactory"
+    class="org.springframework.jms.connection.CachingConnectionFactory">
+    <constructor-arg ref="amqConnectionFactory" />
+  </bean>
+ 
+  <!-- ======================================================= -->
+  <!-- JMS Send, define default destination and JmsTemplate    -->
+  <!-- ======================================================= -->
+  <!-- Default Destination Queue Definition -->
+  <bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQQueue">
+    <!-- name of the queue -->
+     <constructor-arg index="0" value="myQueue" />
+    <!-- <constructor-arg index="0" value="test" /> -->
+    
+  </bean>
+  
+   <bean id="resultDestination" class="org.apache.activemq.command.ActiveMQQueue">
+    <!-- name of the queue -->
+    <constructor-arg index="0" value="auditResultQueue" />
+  </bean>
+ 
+  <!-- JmsTemplate Definition -->
+  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory" ref="connectionFactory" />
+    <property name="defaultDestination" ref="defaultDestination" />
+  </bean>
+ 
+  <bean id="jmsMessageSender" class="org.tanaguru.jsm.service.senderimpl.JmsMessageSenderImpl" >
+     <!-- <property name="jmsTemplate" ref="jmsTemplate" /> -->
+  </bean>
+  
+  
+  
+  
+  
+  <!-- Listener part --> 
+  
+  
+  
+  
+ <!-- this is the Message Driven POJO (MDP) -->
+ <bean id="auditResultListener" class="org.tanaguru.jms.service.listenerimpl.JmsMessageListenerImpl">
+                                     
+  </bean>
+
+<!-- and this is the message listener container -->
+  <bean id="jmsTanaguruContainer"
+          class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+      <property name="connectionFactory" ref="amqConnectionFactory" />
+      <property name="destination" ref="resultDestination" />
+      <property name="messageListener" ref="auditResultListener" />
+      <property name="sessionTransacted" value="true" />
+      <property name="sessionAcknowledgeModeName" value="SESSION_TRANSACTED" />
+  </bean>
+    
+    
+    
+    <!--   trackAudit hashmap    --> 
+  <bean id="trackAuditImpl" class="org.tanaguru.rest.util.TrackAuditImpl" scope="singleton" >
+      
+  </bean>
+    
+ 
+</beans>
